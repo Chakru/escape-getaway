@@ -10,6 +10,8 @@ const MapView = ({ match }) => {
   userCity.map(city => {
     if (city.name === match.params.city) {
       cityLocation = city.location;
+    } else {
+      return;
     }
   });
 
