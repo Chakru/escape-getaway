@@ -1,7 +1,10 @@
 import { useState } from 'react';
-import ReactMapGl, { Marker } from 'react-map-gl';
+import mapboxgl from 'mapbox-gl';
 import cities from '../../../src/cities.json';
-import image from '../../../src/assets/maps-and-flags.svg';
+import ReactMapGl, { Marker } from 'react-map-gl';
+import { ReactComponent as Image } from '../../../src/assets/maps-and-flags.svg';
+// eslint-disable-next-line import/no-webpack-loader-syntax
+mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default;
 
 const MapView = ({ match }) => {
   const userCity = Object.values(cities);
@@ -30,7 +33,7 @@ const MapView = ({ match }) => {
       longitude={cityLocation.lon}
     >
       <button>
-        <img src={image} alt="Marker" />
+        <Image />
       </button>
     </Marker>
   ));
