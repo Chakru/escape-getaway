@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import mapboxgl from 'mapbox-gl';
-import cities from '../../../src/cities.json';
+import cities from '../../cities.json';
 import ReactMapGl, { Marker } from 'react-map-gl';
-import { ReactComponent as Image } from '../../../src/assets/maps-and-flags.svg';
+import { ReactComponent as Image } from '../../assets/maps-and-flags.svg';
 // eslint-disable-next-line import/no-webpack-loader-syntax
 mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default;
 
@@ -26,17 +26,13 @@ const MapView = ({ match }) => {
     zoom: 10,
   });
 
-  const mapMarker = userCity.map(city => (
-    <Marker
-      key={city.id}
-      latitude={cityLocation.lat}
-      longitude={cityLocation.lon}
-    >
-      <button>
-        <Image />
+  const mapMarker = (
+    <Marker latitude={cityLocation.lat} longitude={cityLocation.lon}>
+      <button style={{ background: 'transparent', border: '0' }}>
+        <Image style={{ height: '50px', width: '50px' }} />
       </button>
     </Marker>
-  ));
+  );
 
   return (
     <div>
